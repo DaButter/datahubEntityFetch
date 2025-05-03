@@ -2,9 +2,11 @@ import logging
 import os
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 from datahub.ingestion.graph.client import DatahubClientConfig, DataHubGraph
 
 app = Flask(__name__)
+CORS(app)
 log = logging.getLogger(__name__)
 logging.basicConfig(level=os.getenv("LOG_LEVEL") or "INFO")
 
@@ -71,6 +73,9 @@ def get_data():
     # log.info(f"CONTENTS OF ENTITIES: {entities}")
     return jsonify(entities)
 
+# temporary, this will be added in docker config
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
 
 # TODO
     # '''

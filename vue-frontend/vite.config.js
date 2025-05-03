@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -19,4 +18,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  server: {
+    proxy: {
+      // Proxy all requests starting with '/api' to your Flask backend
+      '/api': {
+        target: 'http://0.0.0.0:5000',
+        changeOrigin: true,
+      }
+    }
+  }
 })
