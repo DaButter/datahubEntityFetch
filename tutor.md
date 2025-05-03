@@ -44,3 +44,5 @@ I could provide only 1 URN at a time.
 To get aspects for all entities, I would need to loop around and spam requests, which is inefficient.
 
 So searching the API description, and finding some examples, decided this data fetch can be beautifuly combined into 1 graphql query using ```execute_graphql```.
+Not to hardcode the count (with max number of 10 000), I implemented scroll ID usage.
+
