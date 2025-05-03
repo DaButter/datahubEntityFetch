@@ -26,8 +26,9 @@ def get_data():
                 type
                 ... on Dataset {
                   name
-                  properties {
-                    description
+                  description
+                  platform {
+                    name
                   }
                 }
               }
@@ -59,15 +60,12 @@ def get_data():
         entity = entity_wrapper["entity"]
         log.info(f"Unwrapped entity: {entity}")
 
-        description = (entity.get("properties") or {}).get("description")
-        if description is None:
-            description = "Nothing"
-
         entities.append({
             "name"        : entity["name"],
             "type"        : entity["type"],
             "urn"         : entity["urn"],
-            "description" : description
+            "platform"    : entity["platform"]["name"],
+            "description" : entity["description"] if entity["description"] else "Nothing"
         })
 
     # log.info(f"CONTENTS OF ENTITIES: {entities}")
