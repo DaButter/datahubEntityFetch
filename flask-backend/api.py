@@ -12,12 +12,14 @@ logging.basicConfig(level=os.getenv("LOG_LEVEL") or "INFO")
 
 client = DataHubGraph(DatahubClientConfig(server="https://api.datahub.richert.li"))
 
-@app.route("/api")
+@app.route("/api/fetch_entities")
 def get_data():
-    log.info("Handling GET request for /api")
+    log.info("Handling GET request for /api/fetch_entities")
     search_results = []
     scroll_id = None
 
+    # grapql allows up to 10 000 entry returns per request, but for better development purposes,
+    # added a paginator to demonstrate scrollID usage
     while True:
         query = """
         query($input: ScrollAcrossEntitiesInput!) {
@@ -66,11 +68,11 @@ def get_data():
             "name"        : entity["name"],
             "type"        : entity["type"],
             "urn"         : entity["urn"],
-            "platform"    : entity["platform"]["name"],
+            "platform"    : entity["platform"]["name"].upper(),
             "description" : entity["description"] if entity["description"] else "No description"
         })
 
-    # log.info(f"Formed entities list: {entities}")
+    log.info(f"Formed entities list: {entities}")
     return jsonify(entities)
 
 # temporary, this will be added in docker config

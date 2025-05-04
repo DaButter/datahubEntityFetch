@@ -2,24 +2,33 @@
   <div class="container padding-v-2">
     <div class="row">
       <div class="col">
-        <h1 class="d3">VueJS + Flask Fullstack Example</h1>
+        <h1 class="d3">VueJS + Flask Fullstack app by Austris</h1>
       </div>
     </div>
 
-    <div class="row row--gutters">
+    <div class="row" v-if="!entities.length">
+      <div class="col">
+        <sdx-button-group layout="fixed">
+          <sdx-button
+            theme="confirm"
+            label="Load Entities"
+            @click="fetchEntities"
+            icon-name="icon-download"
+          ></sdx-button>
+        </sdx-button-group>
+      </div>
+    </div>
+
+    <div v-if="entities.length" class="row row--gutters">
       <div
-        class="col-lg-6"
-        v-for="(entity, index) in entities"
+        class="col-lg-6 col-xl-4"
+        v-for="entity in entities"
         :key="entity.urn"
       >
-        <sdx-card
-          layout="interaction"
-          :label="entity.name"
-          label-aria-level="4"
-          :href-label="entity.description"
-          href="javascript:;"
-          href-aria-label="Open new website."
-        ></sdx-card>
+        <sdx-card :label="entity.name" label-aria-level="2">
+          <p>{{entity.description}}</p>
+          <sdx-tag :label="entity.platform" icon-name="icon-database"></sdx-tag>
+        </sdx-card>
       </div>
     </div>
   </div>
@@ -27,23 +36,31 @@
 
 <script>
 import axios from 'axios';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   data() {
     return {
-      entities: []
+      entities: [],
+      error: null,
+      isLoading: false
     };
   },
-  mounted() {
-    axios.get('/api')
-      .then(response => {
-        console.log('Fetched entities: ', response.data)
-        this.entities = response.data;
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }
-};
+  methods: {
+    async fetchEntities() {
+      try {
+        this.isLoading = true;
+        this.error = null;
+        const { data } = await axios.get('/api/fetch_entities');
+        this.entities = data;
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+        this.error = 'Failed to load entity data!';
+      } finally {
+        this.isLoading = false;
+      }
+    }
+  },
+});
 </script>
