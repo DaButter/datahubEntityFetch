@@ -20,17 +20,6 @@ Dataset entity type: https://docs.datahub.com/docs/graphql/objects#dataset
 
 Front-end desing references taken from here: https://sdx.swisscom.com/
 
-List of dataset URNS:
-[
-  "urn:li:dataset:(urn:li:dataPlatform:hdfs,SampleHdfsDataset,PROD)",
-  "urn:li:dataset:(urn:li:dataPlatform:hive,SampleHiveDataset,PROD)",
-  "urn:li:dataset:(urn:li:dataPlatform:hive,fct_users_created,PROD)",
-  "urn:li:dataset:(urn:li:dataPlatform:hive,fct_users_deleted,PROD)",
-  "urn:li:dataset:(urn:li:dataPlatform:hive,logging_events,PROD)",
-  "urn:li:dataset:(urn:li:dataPlatform:kafka,SampleKafkaDataset,PROD)",
-  "urn:li:dataset:(urn:li:dataPlatform:s3,project/root/events/logging_events_bckp,PROD)"
-]
-
 ***What did i do***:
 
 Using this I could get a list of all entities with "dataset" type:
