@@ -67,10 +67,10 @@ def get_data():
             "type"        : entity["type"],
             "urn"         : entity["urn"],
             "platform"    : entity["platform"]["name"],
-            "description" : entity["description"] if entity["description"] else "Nothing"
+            "description" : entity["description"] if entity["description"] else "No description"
         })
 
-    # log.info(f"CONTENTS OF ENTITIES: {entities}")
+    # log.info(f"Formed entities list: {entities}")
     return jsonify(entities)
 
 # temporary, this will be added in docker config
