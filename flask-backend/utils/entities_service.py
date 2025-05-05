@@ -12,7 +12,7 @@ def fetch_datasets():
 
         while True:
             page_count += 1
-            # log.debug(f"Fetching page {page_count} (scroll_id: {scroll_id})")
+            log.info(f"Fetching page {page_count} (scroll_id: {scroll_id})")
 
             query = """
             query($input: ScrollAcrossEntitiesInput!) {

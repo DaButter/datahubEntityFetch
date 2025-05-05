@@ -6,14 +6,28 @@
       </div>
     </div>
 
+    <!-- Error Notification -->
+    <div v-if="error" class="row margin-bottom-3">
+      <div class="col">
+        <sdx-card
+          layout="inline-notification"
+          notification-type="warning"
+          :label="error"
+          label-aria-level="3">
+          Failed to load entity data. Please try again.
+        </sdx-card>
+      </div>
+    </div>
+
     <div class="row" v-if="!entities.length">
       <div class="col">
         <sdx-button-group layout="fixed">
           <sdx-button
             theme="confirm"
-            label="Load Entities"
+            :label="isLoading ? 'Loading...' : 'Load Entities'"
             @click="fetchEntities"
             icon-name="icon-download"
+            :disabled="isLoading"
           ></sdx-button>
         </sdx-button-group>
       </div>
@@ -56,7 +70,7 @@ export default defineComponent({
         this.entities = data;
       } catch (error) {
         console.error('Error fetching data: ', error);
-        this.error = 'Failed to load entity data!';
+        this.error = error.response?.data?.error || error.message || 'Failed to load entity data!';
       } finally {
         this.isLoading = false;
       }

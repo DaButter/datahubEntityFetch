@@ -20,7 +20,6 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      // Proxy all requests starting with '/api' to your Flask backend
       '/api/fetch_entities': {
         target: 'http://0.0.0.0:5000',
         changeOrigin: true,

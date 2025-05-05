@@ -7,6 +7,7 @@ from utils.entities_service import fetch_datasets
 
 app = Flask(__name__)
 CORS(app)
+
 log = logging.getLogger(__name__)
 logging.basicConfig(level=os.getenv("LOG_LEVEL") or "INFO")
 
@@ -15,7 +16,7 @@ def get_entities():
     log.info("Handling GET request for /api/fetch_entities")
     try:
         entities = fetch_datasets()
-        # log.info(f"Successfully fetched {len(entities)} entities")
+        log.info(f"Successfully fetched {len(entities)} entities")
         return jsonify(entities)
     except Exception as e:
         log.error("Failed to fetch entities", exc_info=True)
