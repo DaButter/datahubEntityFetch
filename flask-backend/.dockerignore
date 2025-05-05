@@ -1,10 +1,6 @@
-**/__pycache__
-**/*.pyc
-**/*.pyo
-**/*.pyd
+__pycache__
 venv/
-.gitignore
-Dockerfile
-*.log
-*.swp
+*.pyc
+.env
 *.vscode
+*.swp

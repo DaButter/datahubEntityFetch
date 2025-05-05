@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <!-- Error Notification -->
+    <!-- error notif -->
     <div v-if="error" class="row margin-bottom-3">
       <div class="col">
         <sdx-card
@@ -66,8 +66,6 @@ export default defineComponent({
       try {
         this.isLoading = true;
         this.error = null;
-        // const { data } = await axios.get('/api/fetch_entities');
-        // const { data } = await axios.get('http://backend:5000/api/fetch_entities');
         const { data } = await axios.get(import.meta.env.VITE_API_BASE_URL + '/fetch_entities');
         this.entities = data;
       } catch (error) {

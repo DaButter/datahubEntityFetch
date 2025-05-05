@@ -1,15 +1,13 @@
-# Build stage
-# => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)
-FROM node:18 as builder 
+FROM node:18 as builder
 
 WORKDIR /app
 COPY package*.json ./
 COPY dependencies/ ./dependencies/
+
 RUN npm install
 COPY . .
 RUN npm run build
 
-# Production stage
 FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html

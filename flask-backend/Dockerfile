@@ -1,10 +1,7 @@
-# flask-backend/Dockerfile
+# slim variant contains minimal packages needed to run python, which results in smaller image size
 FROM python:3.9-slim
 
 WORKDIR /app
-ENV PYTHONPATH=/app
-ENV FLASK_APP=api.py
-ENV FLASK_ENV=production
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

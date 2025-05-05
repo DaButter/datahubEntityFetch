@@ -18,7 +18,9 @@ Server connection + query: https://github.com/datahub-project/datahub/blob/maste
 
 Dataset entity type: https://docs.datahub.com/docs/graphql/objects#dataset
 
-Front-end desing references taken from here: https://sdx.swisscom.com/
+Front-end design references taken from here: https://sdx.swisscom.com/
+
+Graphql request example: https://docs.datahub.com/docs/api/graphql/getting-started/
 
 ***What did i do***:
 
