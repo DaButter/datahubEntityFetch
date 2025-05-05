@@ -20,8 +20,8 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api/fetch_entities': {
-        target: 'http://0.0.0.0:5000',
+      '/api': {
+        target: 'http://localhost:5000', // For development
         changeOrigin: true,
       }
     }

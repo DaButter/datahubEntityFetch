@@ -15,14 +15,21 @@ A Vue.js + Flask application that displays dataset entities from DataHub.
 ## Backend Structure
 
 ```
-backend/
+flask-backend/
 ├── app.py
 ├── utils/
 │ ├── datahub_client.py   # DataHub connection manager
 │ └── entities_service.py # fetching dataset entities
 ```
 
-## Frontend Components
+## Frontend Structure and Components
+
+```
+vue-frontend/
+├── vite.config.js
+├── src/
+│ ├── App.vues
+```
 
 - SDX components for UI (cards, tags, buttons)
 - Vue.js for state management

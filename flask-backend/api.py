@@ -1,5 +1,6 @@
 import logging
 import os
+import time
 
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -13,10 +14,12 @@ logging.basicConfig(level=os.getenv("LOG_LEVEL") or "INFO")
 
 @app.route("/api/fetch_entities")
 def get_entities():
+    start_time = time.time()
     log.info("Handling GET request for /api/fetch_entities")
     try:
         entities = fetch_datasets()
         log.info(f"Successfully fetched {len(entities)} entities")
+        log.info(f"Request completed in {time.time() - start_time:.2f}s")
         return jsonify(entities)
     except Exception as e:
         log.error("Failed to fetch entities", exc_info=True)
@@ -25,8 +28,8 @@ def get_entities():
             "details": str(e)
         }), 500
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+# if __name__ == '__main__':
+    # app.run(host='0.0.0.0', debug=True)
 
 '''
     Use the DataHubGraph client to fetch all entities of type "dataset" from DataHub

@@ -37,3 +37,15 @@ To get aspects for all entities, I would need to loop around and spam requests, 
 So searching the API description, and finding some examples, decided this data fetch can be beautifuly combined into 1 graphql query using ```execute_graphql```.
 Not to hardcode the count (with max number of 10 000), I implemented scroll ID usage.
 
+# Remove old image, if exists
+docker-compose down -v --rmi all
+
+# Build everything
+docker-compose build --no-cache
+
+# Start containers
+docker-compose up
+
+# Access at:
+# - Frontend: http://localhost:3000
+# - Backend: http://localhost:5000
